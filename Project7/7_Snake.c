@@ -1,25 +1,19 @@
-/*/
 
-Урок 7. Игра в консоли Змейка. 
-Поддерживает платформы: Windows / Unix 
+#include <stdio.h> //Г‘ГІГ Г­Г¤Г°Г ГІГ­Г Гї ГЎГЁГЎГ«ГЁГ®ГІГҐГЄГ  Г±ГЁ
+#include <stdlib.h> //Г‚ГўГ®Г¤-ГўГ»ГўГ®Г¤
+#include <time.h> //Г‚Г°ГҐГ¬Гї ГЁ Г°Г Г­Г¤Г®Г¬
+#include "main.h" //ГЋГІГЄГ°Г»ГІГЁГҐ ГґГ Г©Г«Г  Г§Г ГЈГ®Г«Г®ГўГЄГ®Гў
 
-/*/
+#ifdef _WIN32 ///Windows - ГЇГ«Г ГІГґГ®Г°Г¬Г 
+#include <Windows.h> //ГЃГЁГЎГ«ГЁГ®ГІГҐГЄГ  Г­ГіГ¦Г­Г  Г¤Г«Гї ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГї ГґГіГ­ГЄГ¶ГЁГЁ Sleep(); 
+#include <conio.h> //ГЃГЁГЎГ«ГЁГ®ГІГҐГЄГ  Г­ГіГ¦Г­Г  Г¤Г«Гї ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГї ГґГіГ­ГЄГ¶ГЁГЁ getch() ГЁ kbhit() (Г®ГІГ±Г«ГҐГ¦ГЁГўГ Г­ГЁГҐ ГЄГ«Г ГўГЁГё)
 
-#include <stdio.h> //Стандратная библиотека си
-#include <stdlib.h> //Ввод-вывод
-#include <time.h> //Время и рандом
-#include "main.h" //Открытие файла заголовков
-
-#ifdef _WIN32 ///Windows - платформа
-#include <Windows.h> //Библиотека нужна для использования функции Sleep(); 
-#include <conio.h> //Библиотека нужна для использования функции getch() и kbhit() (отслеживание клавиш)
-
-#else ///UNIX - Платформа
+#else ///UNIX - ГЏГ«Г ГІГґГ®Г°Г¬Г 
 #include <unistd.h>
 #include <terminos.h>
 #include <sys/select.h>
 
-//Переопределение для UNIX
+//ГЏГҐГ°ГҐГ®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГҐ Г¤Г«Гї UNIX
 
 #define STDIN_FILENO 0
 #define NB_DISABLE 0
@@ -64,11 +58,11 @@ int getch()
 #endif
 #define SIZE 1000
 
-const int H = 13, W = 17, INTERVAL = 200; //обновление экрана
+const int H = 13, W = 17, INTERVAL = 200; //Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ ГЅГЄГ°Г Г­Г 
 
-int snake_size; //размер змейки
-int change_x, change_y, coordinates_x[SIZE], coordinates_y[SIZE]; //координаты
-int food_x = -1, food_y = -1; //координаты еды
+int snake_size; //Г°Г Г§Г¬ГҐГ° Г§Г¬ГҐГ©ГЄГЁ
+int change_x, change_y, coordinates_x[SIZE], coordinates_y[SIZE]; //ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ»
+int food_x = -1, food_y = -1; //ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ» ГҐГ¤Г»
 char symbol, a[SIZE][SIZE];
 
 
@@ -93,7 +87,7 @@ int main(void)
 }
 
 
-void change_direction() //Отслеживание нажатой клавиши и изменение направления
+void change_direction() //ГЋГІГ±Г«ГҐГ¦ГЁГўГ Г­ГЁГҐ Г­Г Г¦Г ГІГ®Г© ГЄГ«Г ГўГЁГёГЁ ГЁ ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГҐ Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГї
 {
 	symbol = getch();
 	switch (symbol)
@@ -149,7 +143,7 @@ void change_direction() //Отслеживание нажатой клавиши и изменение направления
 	}
 }
 
-void next_step() //Отслеживает шаг змейки
+void next_step() //ГЋГІГ±Г«ГҐГ¦ГЁГўГ ГҐГІ ГёГ ГЈ Г§Г¬ГҐГ©ГЄГЁ
 {
 	int i;
 	clear_snake_on_table(); 
@@ -183,7 +177,7 @@ void next_step() //Отслеживает шаг змейки
 	}
 }
 
-void place_food() //расстановка фруктов рандомно
+void place_food() //Г°Г Г±Г±ГІГ Г­Г®ГўГЄГ  ГґГ°ГіГЄГІГ®Гў Г°Г Г­Г¤Г®Г¬Г­Г®
 {
 	int i, x, y;
 	srand(time(NULL));
@@ -211,7 +205,7 @@ void place_food() //расстановка фруктов рандомно
 	}
 }
 
-void show_table() //Расчертить поле игрока
+void show_table() //ГђГ Г±Г·ГҐГ°ГІГЁГІГј ГЇГ®Г«ГҐ ГЁГЈГ°Г®ГЄГ 
 {
 	int i, j;
 #ifdef _WIN32
@@ -231,14 +225,14 @@ void show_table() //Расчертить поле игрока
 	}
 }
 
-void clear_snake_on_table() //Убираем змейку после проигрыша
+void clear_snake_on_table() //Г“ГЎГЁГ°Г ГҐГ¬ Г§Г¬ГҐГ©ГЄГі ГЇГ®Г±Г«ГҐ ГЇГ°Г®ГЁГЈГ°Г»ГёГ 
 {
 	int i;
 	for (i = 1; i <= snake_size; ++i)
 		a[coordinates_x[i]][coordinates_y[i]] = ' ';
 }
 
-void check_coordination() //проверка координат 
+void check_coordination() //ГЇГ°Г®ГўГҐГ°ГЄГ  ГЄГ®Г®Г°Г¤ГЁГ­Г ГІ 
 {
 	if (coordinates_x[1] > H) coordinates_x[1] = 1;
 	if (coordinates_x[1] < 1) coordinates_x[1] = H;
@@ -246,7 +240,7 @@ void check_coordination() //проверка координат
 	if (coordinates_y[1] < 1) coordinates_y[1] = W;
 }
 
-void show_snake_on_table() //показываем змейку
+void show_snake_on_table() //ГЇГ®ГЄГ Г§Г»ГўГ ГҐГ¬ Г§Г¬ГҐГ©ГЄГі
 {
 	int i;
 	if (change_x == 1 && change_y == 0)
@@ -262,7 +256,7 @@ void show_snake_on_table() //показываем змейку
 			a[coordinates_x[i]][coordinates_y[i]] = '@';
 }
 
-int game_over() //змейка скушала сама себя
+int game_over() //Г§Г¬ГҐГ©ГЄГ  Г±ГЄГіГёГ Г«Г  Г±Г Г¬Г  Г±ГҐГЎГї
 {
 	int i;
 	for (i = 2; i < snake_size; ++i)
@@ -274,7 +268,7 @@ int game_over() //змейка скушала сама себя
 	return FALSE;
 }
 
-void standart_settings() //стандартные настройки
+void standart_settings() //Г±ГІГ Г­Г¤Г Г°ГІГ­Г»ГҐ Г­Г Г±ГІГ°Г®Г©ГЄГЁ
 {
 	snake_size = 2;
 	coordinates_x[1] = 1;
@@ -285,7 +279,7 @@ void standart_settings() //стандартные настройки
 	change_y = 1;
 }
 
-int food_check() //проверяем еду
+int food_check() //ГЇГ°Г®ГўГҐГ°ГїГҐГ¬ ГҐГ¤Гі
 {
 	if (food_x == -1 && food_y == -1) return FALSE;
 	return TRUE;
