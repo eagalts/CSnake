@@ -1,0 +1,7 @@
+﻿  7_Snake.c
+c:\users\student\desktop\project7\project7\7_snake.c(85): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _kbhit. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\conio.h(459): note:  см. объявление "kbhit"
+c:\users\student\desktop\project7\project7\7_snake.c(98): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\conio.h(453): note:  см. объявление "getch"
+c:\users\student\desktop\project7\project7\7_snake.c(189): warning C4244: функция: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Project7.vcxproj -> C:\Users\Student\Desktop\Project7\Debug\Project7.exe
