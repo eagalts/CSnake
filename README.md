@@ -7,3 +7,5 @@
 Поддерживает UNIX и WIN32.
 
 .EXE (игра): https://github.com/egors000/CSnake/blob/master/!SNAKE!.exe
+
+Баги: Нельзя играть с русской раскладкой
